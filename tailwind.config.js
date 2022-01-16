@@ -1,7 +1,9 @@
 module.exports = {
-    content: [
-        './public/**/*.html',
-        './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}',
-    ],
-    // more options here
-};
+    mode: 'jit',
+    purge: ['./public/**/*.{scss,sass,css}', './src/**/*.{astro,js,jsx,ts,tsx,vue,scss,sass,css}'],
+    darkMode: 'class', // or 'media' or 'class'
+    theme: {
+        extend: {},
+    },
+    plugins: [],
+}
