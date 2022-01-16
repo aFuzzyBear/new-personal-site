@@ -1,0 +1,20 @@
+---
+import dayjs from "dayjs";
+
+let allPosts = await Astro.fetchContent('../blog-posts/*.md');
+allPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+---
+<div>
+    {allPosts.map((post, index) => {
+        const href = `window.location.href='/posts/${post.file.pathname.split('/').pop().split('.').shift()}'`;
+        return (
+            <div class="mb-1 bg-gray-100 border border-gray-300 rounded py-2 px-3">
+                <div class="flex">
+                    <h1 onclick={href} class="font-bold text-lg mr-3 hover:underline">{post.title}</h1><p class="text-md text-gray-500">{dayjs(post.date).format("MMM D, YYYY")}</p>
+                </div>
+                <p class="text-md italic">{post.desc}</p>
+                <div></div>
+            </div>
+        )
+    })}
+</div>

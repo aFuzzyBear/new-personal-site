@@ -1,0 +1,44 @@
+---
+import Navbar from '../../components/Navbar.astro';
+import getPostData from '../../utils/getPostData';
+import dayjs from "dayjs";
+
+export function getStaticPaths() {
+  const posts = Astro.fetchContent('../../blog-posts/*.md');
+  return posts.map(p => ({
+    params: { slug: p.file.pathname.split('/').pop().split('.').shift() },
+    props: { post: p },
+  }));
+}
+
+const { Content, title, desc, date } = Astro.props.post;
+const { slug, readingTime } = getPostData(Astro.props.post);
+---
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>{title} - A Post by Ali Mosallaei</title>
+
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="stylesheet" href={Astro.resolve('../styles/global.css')}>
+ 	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+	<main>
+		<div class="lg:w-3/6 px-12 lg:px-0 m-auto mt-16 mb-16">
+			<Navbar></Navbar>
+			<div class="text-md mt-5 drop-shadow-lg bg-gray-50 rounded pb-5">
+				<h1 class="text-4xl font-bold px-6 pt-5 pb-2">{title}</h1>
+				<div class="text-sm border-l-4 border-sky-400 px-6 py-1 mb-4 bg-sky-50 flex justify-between">
+					<div>{dayjs(date).format("MMMM DD, YYYY")}</div>
+					<div class="italic">{readingTime}</div>
+				</div>
+				<div class="px-6">
+					<Content />
+				</div>
+            </div>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+---
+let projects = [
+    {
+        name: "Open Floor",
+        emoji: "https://emojicdn.elk.sh/🎙️",
+        desc: "A podcast designed to give a platform for the voice of every individual.",
+        url: "https://openfloor.me/"
+    },
+    {
+        name: "Daily App",
+        emoji: "https://emojicdn.elk.sh/%F0%9F%8C%85",
+        desc: "A schedule management app for Lexington High School.",
+        url: "https://daily.mynt.pw/"
+    },
+    {
+        name: "LexProtect3D",
+        emoji: "https://emojicdn.elk.sh/%F0%9F%A4%BF",
+        desc: "An organization that 3-D prints and donates mask straps to healthcare professionals.",
+        url: "https://lexprotect3d.org"
+    }
+,
+    {
+        name: "Project Smiles",
+        emoji: "https://emojicdn.elk.sh/%F0%9F%98%84",
+        desc: "A way to send virtual holiday cards during the pandemic, with the help of my high school's Symphony Orchestra..",
+        url: "https://lexingtonprojectsmiles.org"
+    }
+]
+---
+<div id="test">
+    {projects.map((item) => (
+            <div class="bg-gray-100 border-gray-300 pt-3 pb-3 px-5 rounded w-full border mb-3">
+            <div class="flex justify-between">
+			    <div class="grid grid-flow-col auto-cols-max">
+			    <div>
+                    <img class="block w-7 mt-0.5 mr-4" src={item.emoji}>
+                </div>
+			    <div>
+                    <h1 class="text-2xl font-bold">{item.name}</h1>
+                </div>
+			</div>
+            </div>
+            <p class="mt-2 text-md">{item.desc} Check it out <a href={item.url} target="_blank" class="underline hover:animate-pulse">here</a>.</p>
+            </div>
+    ))}
+</div>
