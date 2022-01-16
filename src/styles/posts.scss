@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind apply;
-
 
 /* Additional vertical padding used by kbd tag. */
 .py-05 {
@@ -37,7 +34,7 @@
 }
 
 .markdown h1 {
-  @apply leading-tight border-b text-4xl font-semibold mb-4 mt-6 pb-2;
+  @apply leading-tight border-b text-2xl font-semibold mb-4 mt-6 pb-2;
 }
 
 .markdown h2 {
@@ -102,7 +99,7 @@
 
 /* Override pygments style background color. */
 .markdown .highlight pre {
-  @apply bg-gray-100 !important;
+  @apply bg-gray-100 ;
 }
 
 .markdown img{

@@ -2,6 +2,7 @@
 import Navbar from '../../components/Navbar.astro';
 import getPostData from '../../utils/getPostData';
 import dayjs from "dayjs";
+import {Markdown} from 'astro/components'
 
 export function getStaticPaths() {
   const posts = Astro.fetchContent('../../blog-posts/*.md');
@@ -13,7 +14,7 @@ export function getStaticPaths() {
 
 const { Content, title, desc, date } = Astro.props.post;
 var content = `<div class="markdown">${Astro.props.post.astro.html}</div>`
-console.log(content)
+//console.log(content)
 const { slug, readingTime } = getPostData(Astro.props.post);
 ---
 <html lang="en">
@@ -21,14 +22,11 @@ const { slug, readingTime } = getPostData(Astro.props.post);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>{title} - A Post by Ali Mosallaei</title>
-
 	<link rel="icon" type="image/x-icon" href="https://emojicdn.elk.sh/%F0%9F%93%A6?style=google" />
- 	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="/src/styles/posts.scss"/>
+ 	
 </head>
 <body>
-	<style global>
-		@import '../../styles/posts.css';
-	</style>
 	<main>
 		<div class="lg:w-3/6 px-12 lg:px-0 m-auto mt-16 mb-16">
 			<Navbar></Navbar>
@@ -38,7 +36,7 @@ const { slug, readingTime } = getPostData(Astro.props.post);
 					<div>{dayjs(date).format("MMMM DD, YYYY")}</div>
 					<div class="italic">{readingTime}</div>
 				</div>
-				<div class="px-6">
+				<div class="bg-purple-500">
 					{content}
 				</div>
             </div>
